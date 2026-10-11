@@ -1,0 +1,19 @@
+{
+  "info": { "name": "Server with MySQL2 TS - Productos", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000/api/v1/products" },
+    { "key": "productId", "value": "1" }
+  ],
+  "item": [
+    { "name": "1. GET todos activos", "request": { "method": "GET", "url": "{{baseUrl}}/getAll?active=true" } },
+    { "name": "2. GET por ID activo", "request": { "method": "GET", "url": "{{baseUrl}}/getById/{{productId}}" } },
+    { "name": "3. POST crear", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"name\": \"Audifonos demo\",\n  \"price\": 499.90,\n  \"stock\": 20,\n  \"description\": \"Audifonos inalambricos\",\n  \"brand\": \"MiMarca\",\n  \"img\": \"https://example.com/audifonos.jpg\"\n}" }, "url": "{{baseUrl}}/create" } },
+    { "name": "4. PUT actualizar completo", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"name\": \"Audifonos actualizados\",\n  \"price\": 549.90,\n  \"stock\": 25,\n  \"description\": \"Descripcion actualizada\",\n  \"brand\": \"MiMarca\",\n  \"img\": null\n}" }, "url": "{{baseUrl}}/update/{{productId}}" } },
+    { "name": "5. PATCH cambiar precio", "request": { "method": "PATCH", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"price\": 599.90\n}" }, "url": "{{baseUrl}}/change-price/{{productId}}" } },
+    { "name": "6. DELETE baja logica", "request": { "method": "DELETE", "url": "{{baseUrl}}/delete/{{productId}}" } },
+    { "name": "7. GET comprobar baja por ID", "request": { "method": "GET", "url": "{{baseUrl}}/getById/{{productId}}" } },
+    { "name": "8. GET comprobar baja en todos", "request": { "method": "GET", "url": "{{baseUrl}}/getAll?active=true" } },
+    { "name": "9. GET ID inexistente", "request": { "method": "GET", "url": "{{baseUrl}}/getById/999999" } },
+    { "name": "10. POST datos invalidos", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"name\": \"Error\",\n  \"price\": -10,\n  \"stock\": 1,\n  \"description\": \"Prueba\"\n}" }, "url": "{{baseUrl}}/create" } }
+  ]
+}
